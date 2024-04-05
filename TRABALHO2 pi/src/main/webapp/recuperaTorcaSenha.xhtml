@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Login</title>
+</h:head>
+<h:body>
+	    <h2>Login</h2>
+    <h:form id="formulario">
+    	<p:messages autoUpdate="true"/>	
+    	login:
+	    <h:inputText value="#{loginBean.login}" />
+	    data:
+	    <p:calendar value="#{loginBean.dataNascimento}" 
+        showButtonPanel="true" pattern="dd/MM/yyyy" />
+	    senha nova:
+	    <h:inputSecret value="#{loginBean.novaSenha}" />
+    	<h:commandButton value="Enviar" action="#{loginBean.recuperarOuTrocarSenha}" update="formulario"/>
+	</h:form>
+	
+	<p:button value="login" outcome="login" />
+</h:body>
+</html>

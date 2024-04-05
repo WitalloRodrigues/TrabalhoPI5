@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<h:head>
+    	<title>Gerar Agendamento</title>
+	</h:head>
+	<h:body>
+		<h:form id="formulario">
+		<p:messages autoUpdate="true"/>
+	        <p:panel header="Gerar Agendamento">
+	            <p:outputLabel for="paciente" value="Paciente:"/>
+	            <p:inputText id="paciente" value="#{agendamentoBean.agenda.paciente}" />
+	            <h:inputHidden  id="id" value="#{agendamentoBean.agenda.id}"/>
+	
+	            <p:outputLabel for="medico" value="Médico:"/>
+	            <p:selectOneMenu id="medico" value="#{agendamentoBean.agenda.medico}" >
+	                <f:selectItem itemLabel="Selecione um médico" itemValue=""/>
+	                <f:selectItem itemLabel="Médico 1" itemValue="Médico 1"/>
+	                <f:selectItem itemLabel="Médico 2" itemValue="Médico 2"/>
+	                <f:selectItem itemLabel="Médico 3" itemValue="Médico 3"/>
+	            </p:selectOneMenu>
+	
+	            <p:outputLabel for="dataHoraConsulta" value="Data e Hora da Consulta:"/>
+	            <p:calendar id="dataHoraConsulta" value="#{agendamentoBean.agenda.dataHoraConsulta}" showButtonPanel="true" pattern="dd/MM/yyyy HH:mm:ss" />
+	
+	            <p:commandButton value="Salvar" action="#{agendamentoBean.salvar()}" update="formulario"/>
+	        </p:panel>
+	    </h:form>
+	    
+	    <p:commandButton value="Ir para agendamentos" icon="pi pi-list" action="#{agendamentoBean.listagem()}" update="formulario"/>
+	</h:body>
+
+</html>

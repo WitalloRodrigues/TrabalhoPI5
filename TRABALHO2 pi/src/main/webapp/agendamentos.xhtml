@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Agendamentos</title>
+</h:head>
+<h:body>
+    <h:form id="listagem">
+    
+    	<p:messages autoUpdate="true"/>
+    	
+    	<h:outputText value="Olá, #{sessionUtils.getUsuarioLogado().nome}!"/><br/>
+        <h:commandButton value="Logout" action="#{loginBean.logout()}"/>
+    	
+        <p:panel header="Agendamentos">
+            <p:dataTable var="agenda" value="#{agendamentoBean.agendas}" paginator="true" rows="10">
+                <p:column headerText="ID">
+                    <h:outputText value="#{agenda.id}"/>
+                </p:column>
+                <p:column headerText="Paciente">
+                    <h:outputText value="#{agenda.paciente}"/>
+                </p:column>
+                <p:column headerText="Médico">
+                    <h:outputText value="#{agenda.medico}"/>
+                </p:column>
+                <p:column headerText="Data e Hora da Consulta">
+                    <h:outputText value="#{agenda.dataFormatada}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Visualizar" action="#{agendamentoBean.exibir(agenda)}" update="listagem"/>
+                    <p:commandButton value="Editar" action="#{agendamentoBean.editar(agenda)}" />
+                    <p:commandButton value="Excluir" action="#{agendamentoBean.excluir(agenda)}" update="listagem"/>
+                </p:column>
+            </p:dataTable>
+            
+            <p:commandButton value="Contar Agendamentos" action="#{agendamentoBean.mostrarContarAgendamentos()}" update="listagem"/>
+    		<p:outputLabel id="quantidadeAgendamentos" value="Total de agendamentos: #{agendamentoBean.quantidadeAgendamentos}"/>
+            
+            <p:commandButton value="Novo Agendamento" action="gerar_agendamento"/>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

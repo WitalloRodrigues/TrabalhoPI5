@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>CRUD de Usuário</title>
+</h:head>
+<h:body>
+    <h2>CRUD de Usuário</h2>
+    
+        <h:outputText value="Olá,  #{sessionUtils.getUsuarioLogado().nome}!"/><br/>
+        
+        <h:form>
+		    <h:commandLink action="#{loginBean.logout()}" value="Sair" />
+		</h:form>
+
+    <p:button value="cadastro de usuarios" icon="pi pi-list" outcome="cadastro_usuario" />
+
+    <h:form>
+        <h:dataTable value="#{usuarioBean.usuarios}" var="usuario">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{usuario.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Login</f:facet>
+                #{usuario.login}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                #{usuario.nome}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ações</f:facet>
+                
+
+                <h:commandButton value="Editar" action="#{usuarioBean.editarUsuario(usuario)}"/>
+                
+                <h:commandButton value="Excluir" action="#{usuarioBean.excluirUsuario(usuario)}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
